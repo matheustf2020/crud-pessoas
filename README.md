@@ -29,5 +29,5 @@ Desenvolvido Por Matheus Trindade.
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/nome-do-repositorio.git
-cd nome-do-repositorio
+git clone https://github.com/matheustf2020/crud-pessoas.git
+cd crud-pessoas
