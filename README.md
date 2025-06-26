@@ -31,3 +31,19 @@ Desenvolvido Por Matheus Trindade.
 ```bash
 git clone https://github.com/matheustf2020/crud-pessoas.git
 cd crud-pessoas
+
+2. Crie e ative um ambiente virtual (recomendado)
+python -m venv venv
+# Ativando no Windows
+venv\Scripts\activate
+# Ativando no Linux/macOS
+source venv/bin/activate
+
+3. Instale as dependências
+pip install -r requirements.txt
+
+4. Rode as migrações
+python manage.py migrate
+
+5. Inicie o servidor local
+python manage.py runserver
