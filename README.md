@@ -10,7 +10,7 @@ Desenvolvido Por Matheus Trindade.
 - ✅ Listagem de todas as pessoas cadastradas
 - ✅ Edição de dados com validações
 - ✅ Exclusão de pessoas com confirmação
-- ✅ Validação para nome duplicado e senha com mínimo de 3 caracteres
+- ✅ Validação para nome duplicado e senha com mínimo de 4 caracteres
 - ✅ Interface simples e responsiva com HTML + CSS puro
 
 ---
