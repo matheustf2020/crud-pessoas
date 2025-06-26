@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Editar Pessoa{% endblock %}
+{% block conteudo %}
+
+<h2 class="center">Editar Dados de {{ pessoa.nome }}</h2>
+
+<form method="POST" style="margin-top: 30px;">
+  {% csrf_token %}
+
+  <label for="nome">Nome:</label>
+  <input type="text" name="nome" id="nome" value="{{ pessoa.nome }}">
+
+  <label for="email">Email:</label>
+  <input type="email" name="email" id="email" value="{{ pessoa.email }}">
+
+  <label for="senha">Senha:</label>
+  <input type="password" name="senha" id="senha" value="{{ pessoa.senha }}">
+
+  <button type="submit" class="btn">Salvar alterações</button>
+  <a href="{% url 'listar_pessoas' %}" class="btn">Cancelar</a>
+</form>
+
+{% endblock %}
