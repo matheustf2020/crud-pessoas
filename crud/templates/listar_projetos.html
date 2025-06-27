@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Lista de Projetos{% endblock %}
+{% block conteudo %}
+
+<h2 class="center">Projetos</h2>
+
+<div style="margin-bottom: 20px; text-align: right;">
+  <a href="{% url 'listar_pessoas' %}" class="btn">Voltar para Pessoas</a>
+</div>
+
+{% for projeto in projetos %}
+  <div style="border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-bottom: 20px; background-color: #f9f9f9; box-shadow: 0 1px 4px rgba(0,0,0,0.08);">
+    <h3 style="margin-top: 0;">{{ projeto.nome }}</h3>
+    <p><strong>Descrição:</strong> {{ projeto.descricao }}</p>
+    
+    <p><strong>Equipe:</strong></p>
+    {% if projeto.pessoa_set.all %}
+      <ul style="padding-left: 20px;">
+        {% for pessoa in projeto.pessoa_set.all %}
+          <li>{{ pessoa.nome }} - <span style="color: #555;">{{ pessoa.email }}</span></li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p style="color: #888;">Ninguém cadastrado ainda.</p>
+    {% endif %}
+  </div>
+{% empty %}
+  <p class="center">Nenhum projeto encontrado.</p>
+{% endfor %}
+
+{% endblock %}

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 import json
-from .models import Pessoa
+from .models import Pessoa, Cargos, Projetos
 
 def criar_pessoa(request):
     if request.method == "GET":
@@ -10,6 +10,7 @@ def criar_pessoa(request):
         nome = request.POST.get('nome')
         senha = request.POST.get('senha')
         email = request.POST.get('email')
+        cargo = Cargos.objects.get(id=1)
         if Pessoa.objects.filter(nome=nome).exists():
             return HttpResponse('Nome já existe, tente outro nome')
         elif len(senha) < 4:
@@ -18,7 +19,8 @@ def criar_pessoa(request):
             pessoa = Pessoa(
                             nome = nome,
                             senha = senha,
-                            email = email
+                            email = email,
+                            cargo = cargo
             )
             pessoa.save()
             return redirect('listar_pessoas')
@@ -30,6 +32,10 @@ def listar_pessoas(request):
     return render(request, 'listar_pessoas.html', {'pessoas': pessoas})
     
     
+def listar_projetos(request):
+    projetos = Projetos.objects.all()
+    return render(request, 'listar_projetos.html', {'projetos': projetos})
+
 
 def editar_pessoa(request, id):
     if request.method == "GET":
