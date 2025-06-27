@@ -2,30 +2,40 @@
 {% block title %}Lista de Projetos{% endblock %}
 {% block conteudo %}
 
-<h2 class="center">Projetos</h2>
+<h2 class="center">📁 Projetos Cadastrados</h2>
 
-<div style="margin-bottom: 20px; text-align: right;">
-  <a href="{% url 'listar_pessoas' %}" class="btn">Voltar para Pessoas</a>
+<div style="display: flex; justify-content: flex-end; gap: 10px; margin-bottom: 20px;">
+  <a href="{% url 'listar_pessoas' %}" class="btn">← Voltar</a>
+  <a href="{% url 'criar_projeto' %}" class="btn blue">+ Novo Projeto</a>
 </div>
 
 {% for projeto in projetos %}
-  <div style="border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-bottom: 20px; background-color: #f9f9f9; box-shadow: 0 1px 4px rgba(0,0,0,0.08);">
-    <h3 style="margin-top: 0;">{{ projeto.nome }}</h3>
-    <p><strong>Descrição:</strong> {{ projeto.descricao }}</p>
-    
-    <p><strong>Equipe:</strong></p>
+  <div style="border: 1px solid #ccc; border-radius: 12px; padding: 20px; margin-bottom: 24px; background-color: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+    <h4 style="margin-top: 0; font-size: 20px; color: #333;">{{ projeto.nome }}</h4>
+    <p><strong>📝 Descrição:</strong> {{ projeto.descricao }}</p>
+
+    <p><strong>👥 Equipe:</strong></p>
     {% if projeto.pessoa_set.all %}
-      <ul style="padding-left: 20px;">
+      <ul style="padding-left: 20px; margin-top: 5px;">
         {% for pessoa in projeto.pessoa_set.all %}
-          <li>{{ pessoa.nome }} - <span style="color: #555;">{{ pessoa.email }}</span></li>
+          <li>{{ pessoa.nome }} — <span style="color: #666;">{{ pessoa.email }}</span></li>
         {% endfor %}
       </ul>
     {% else %}
-      <p style="color: #888;">Ninguém cadastrado ainda.</p>
+      <p style="color: #999;">Sem pessoas vinculadas.</p>
     {% endif %}
+
+    <div style="margin-top: 15px; display: flex; gap: 10px;">
+      <a href="{% url 'vincular_pessoas' projeto.id %}" class="btn">+ Vincular Pessoas</a>
+
+      <form action="{% url 'deletar_projeto' projeto.id %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn red" onclick="return confirm('Tem certeza que deseja excluir este projeto?');">🗑️ Excluir</button>
+      </form>
+    </div>
   </div>
 {% empty %}
-  <p class="center">Nenhum projeto encontrado.</p>
+  <p class="center" style="color: #777;">Nenhum projeto encontrado.</p>
 {% endfor %}
 
 {% endblock %}

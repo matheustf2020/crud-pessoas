@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Criar Projeto{% endblock %}
+{% block conteudo %}
+
+<h2 class="center">📌 Novo Projeto</h2>
+
+<div style="max-width: 500px; margin: 0 auto;">
+  <form method="POST" action="{% url 'criar_projeto' %}" style="background: #fff; padding: 24px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+    {% csrf_token %}
+
+    <div style="margin-bottom: 16px;">
+      <label for="nome" style="font-weight: bold;">Projeto:</label>
+      <input type="text" name="nome" id="nome" class="input" placeholder="Digite o nome do projeto" required style="width: 100%; padding: 8px; margin-top: 4px;">
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <label for="descricao" style="font-weight: bold;">Descrição:</label>
+      <input type="text" name="descricao" id="descricao" class="input" placeholder="Descrição do projeto" required style="width: 100%; padding: 8px; margin-top: 4px;">
+    </div>
+
+    <div style="display: flex; justify-content: space-between; gap: 10px;">
+      <button type="submit" class="btn blue">💾 Salvar</button>
+      <a href="{% url 'listar_pessoas' %}" class="btn">Cancelar</a>
+    </div>
+  </form>
+
+  <div style="text-align: center; margin-top: 20px;">
+    <a href="{% url 'listar_projetos' %}" class="btn">📁 Ver Projetos</a>
+  </div>
+</div>
+
+{% endblock %}
