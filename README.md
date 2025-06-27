@@ -23,6 +23,16 @@ Desenvolvido Por Matheus Trindade.
 - HTML5 e CSS3 (sem frameworks)
 
 ---
+27-06-2025 (Adicionado)
+---
+
+## 🔁 Relacionamentos criados
+
+- `Pessoa` ↔ `Projetos` → **ManyToManyField**
+- Uma pessoa pode participar de vários projetos
+- Um projeto pode conter várias pessoas na equipe
+
+---
 
 ## 💻 Como rodar o projeto localmente
 
